@@ -1,42 +1,79 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-
-import { ChangeDetectorRef } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AppService } from './service/app.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
+import { CoreService } from './service/core.service';
+import { StudentAddEditComponent } from './student-add-edit/student-add-edit.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  // imports: [MatTableModule, MatPaginatorModule]
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  title = 'ProjectAPI';
-  displayedColumns: string[] = ['id', 'height', 'width', 'quantity', 'material', 'label', 'isChecked'];
-  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>(); 
+export class AppComponent implements AfterViewInit ,OnInit{
+  title = 'Student List';
+
+  displayedColumns: string[] = [
+    'id',
+    'studentName',
+    'rollNumber',
+    'emailId',
+    'phoneNumber',
+    'city',
+    'action',
+  ];
+  dataSource: MatTableDataSource<any> = new MatTableDataSource<any>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  constructor(
+    private _appService: AppService,
+    private _dialog: MatDialog,
+    private _coreService: CoreService
+  ) { }
 
-  constructor(private app: AppService, private cdr: ChangeDetectorRef) {}
 
-  ngOnInit() {
-    this.table();
+  ngOnInit(): void {
+    this.loadData();
   }
-
-  ngAfterViewInit() {
-   
-      this.dataSource.paginator = this.paginator;
-
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
-
-  table() {
-    this.app.getdata().subscribe((data: any) => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.cdr.detectChanges();
-    });
-  }
-
   
+
+  OpenAddEditForm() {
+    const dialogRef = this._dialog.open(StudentAddEditComponent);
+    dialogRef.afterClosed().subscribe({
+
+    })
+  }
+  OpenEditForm(data: any) {
+    const dialogRef = this._dialog.open(StudentAddEditComponent, {
+      data,
+    });
+    dialogRef.afterClosed().subscribe({
+
+    })
+
+  }
+
+  deletedata(id: number) {
+    this._appService.deletedata(id).subscribe({
+      next: (res: any) => {
+      },
+      error: (err) => {
+        console.log(err)
+      }
+    })
+  }
+
+loadData(){
+  this._appService.getdata().subscribe((data:any)=>{
+    this.dataSource.data=data
+  })
+}
 }

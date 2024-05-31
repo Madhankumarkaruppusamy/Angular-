@@ -1,0 +1,40 @@
+<div mat-dialog-title >
+    <h1 style="text-align: center;color: #5af43f;"><b>Student Form</b></h1>
+</div>
+<form [formGroup]="studentform" (ngSubmit)="OnFormSubmit()">
+    <div mat-dialog-content class="content">
+        <div class="row">
+            <mat-form-field appearance="outline" color="warn">
+                <mat-label>Name</mat-label>
+                <input matInput type="text" placeholder="Ex: Madhan" formControlName="studentName">
+            </mat-form-field>
+            <mat-form-field appearance="outline" color="warn">
+                <mat-label>Roll Number</mat-label>
+                <input matInput type="text" placeholder="Ex: 18 " formControlName="rollNumber">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" color="warn">
+                <mat-label>EmailId</mat-label>
+                <input matInput type="email" placeholder="Ex: mad@gmail.com" formControlName="emailId">
+            </mat-form-field>
+        </div>
+
+        <div class="row">
+            <mat-form-field appearance="outline" color="warn">
+                <mat-label>PhoneNumber</mat-label>
+                <input matInput type="phone" placeholder="Ex: 9879879871" formControlName="phoneNumber">
+            </mat-form-field>
+            <mat-form-field appearance="outline"color="warn">
+                <mat-label>City</mat-label>
+                <input matInput type="text" placeholder="Ex: Coimbatore " formControlName="city">
+            </mat-form-field>
+        </div>
+
+    </div>
+    <div mat-dialog-action class="action">
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Update':'Save'}}</button>
+    </div>
+</form>

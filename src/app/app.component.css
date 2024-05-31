@@ -1,5 +1,37 @@
-table {
-    width: 80%;
-    background-color:yellowgreen;
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.ful-body {
+
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 1264px;
+
+  mat-form-field {
+    width: 100%;
+
   }
-  
+
+  .table-data {
+
+    max-width: 1248px;
+  }
+
+  .actionrow {
+    display: flex;
+
+
+  }
+
+}
+
+
+
+
+
+
+
+table {
+  width: 80%;
+}
