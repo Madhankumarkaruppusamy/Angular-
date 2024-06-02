@@ -1,0 +1,15 @@
+.sure {
+    text-align: center;
+}
+
+.action {
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aliceblue;
+}
+
+.action button {
+    margin-top: 15px;
+}

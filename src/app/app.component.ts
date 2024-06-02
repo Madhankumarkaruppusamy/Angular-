@@ -7,6 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { CoreService } from './service/core.service';
 import { StudentAddEditComponent } from './student-add-edit/student-add-edit.component';
+import { StudentDeleteComponent } from './student-delete/student-delete.component';
 
 @Component({
   selector: 'app-root',
@@ -48,14 +49,39 @@ export class AppComponent implements AfterViewInit ,OnInit{
   OpenAddEditForm() {
     const dialogRef = this._dialog.open(StudentAddEditComponent);
     dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.loadData();
+        }
+      }
 
     })
   }
+
+  OpenDeleteForm(Id:number) {
+    const dialogRef = this._dialog.open(StudentDeleteComponent, {
+      data: { Id } // Passing Id in data property
+  });
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.loadData();
+        }
+      }
+
+    })
+  }
+
   OpenEditForm(data: any) {
     const dialogRef = this._dialog.open(StudentAddEditComponent, {
       data,
     });
     dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.loadData();
+        }
+      }
 
     })
 
@@ -64,6 +90,7 @@ export class AppComponent implements AfterViewInit ,OnInit{
   deletedata(id: number) {
     this._appService.deletedata(id).subscribe({
       next: (res: any) => {
+        this.loadData();
       },
       error: (err) => {
         console.log(err)

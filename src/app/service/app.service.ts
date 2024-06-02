@@ -11,18 +11,18 @@ export class AppService {
   constructor(private _http:HttpClient) { }
   adddata(data: any) {
     return this._http.post<any>(environment.baseurl+'/api/student/addstudentdetail', data);
-
   }
   
   getdata(){
     return this._http.get(environment.baseurl+'/api/student/getstudentdetail')
   }
+
   putdata(Id:number,data: any) {
     return this._http.put<any>(`${environment.baseurl}/api/student/updatestudentdetail/${Id}`,data);
-
   }
-  deletedata(id: number): Observable<any> {
-    return this._http.delete(`${environment.baseurl}/api/student/deletestudentdetail/${id}`);
 
+  deletedata(Id: number): Observable<any> {
+    return this._http.delete(`${environment.baseurl}/api/student/deletestudentdetail/${Id}`);
   }
+
 }

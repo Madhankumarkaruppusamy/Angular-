@@ -19,13 +19,15 @@ import { StudentAddEditComponent } from './student-add-edit/student-add-edit.com
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { StudentDeleteComponent } from './student-delete/student-delete.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentAddEditComponent
+    StudentAddEditComponent,
+    StudentDeleteComponent
   ],
   imports: [
     BrowserModule,
