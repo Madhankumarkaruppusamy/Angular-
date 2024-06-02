@@ -14,7 +14,7 @@ import { StudentDeleteComponent } from './student-delete/student-delete.componen
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit ,OnInit{
+export class AppComponent implements AfterViewInit, OnInit {
   title = 'Student List';
 
   displayedColumns: string[] = [
@@ -44,7 +44,7 @@ export class AppComponent implements AfterViewInit ,OnInit{
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  
+
 
   OpenAddEditForm() {
     const dialogRef = this._dialog.open(StudentAddEditComponent);
@@ -58,10 +58,10 @@ export class AppComponent implements AfterViewInit ,OnInit{
     })
   }
 
-  OpenDeleteForm(Id:number) {
+  OpenDeleteForm(Id: number) {
     const dialogRef = this._dialog.open(StudentDeleteComponent, {
-      data: { Id } // Passing Id in data property
-  });
+      data: { Id }
+    });
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if (val) {
@@ -98,9 +98,9 @@ export class AppComponent implements AfterViewInit ,OnInit{
     })
   }
 
-loadData(){
-  this._appService.getdata().subscribe((data:any)=>{
-    this.dataSource.data=data
-  })
-}
+  loadData() {
+    this._appService.getdata().subscribe((data: any) => {
+      this.dataSource.data = data
+    })
+  }
 }
