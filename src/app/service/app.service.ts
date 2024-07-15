@@ -1,4 +1,4 @@
-import { HttpClient,HttpHandler } from '@angular/common/http';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../Environment/Environment';
@@ -8,17 +8,18 @@ import { environment } from '../Environment/Environment';
 })
 export class AppService {
 
-  constructor(private _http:HttpClient) { }
+  constructor(private _http: HttpClient) { }
+
   adddata(data: any) {
-    return this._http.post<any>(environment.baseurl+'/api/student/addstudentdetail', data);
-  }
-  
-  getdata(){
-    return this._http.get(environment.baseurl+'/api/student/getstudentdetail')
+    return this._http.post<any>(environment.baseurl + '/api/student/addstudentdetail', data);
   }
 
-  putdata(Id:number,data: any) {
-    return this._http.put<any>(`${environment.baseurl}/api/student/updatestudentdetail/${Id}`,data);
+  getdata() {
+    return this._http.get(environment.baseurl + '/api/student/getstudentdetail')
+  }
+
+  putdata(Id: number, data: any) {
+    return this._http.put<any>(environment.baseurl + `/api/student/updatestudentdetail/${Id}`, data);
   }
 
   deletedata(Id: number): Observable<any> {

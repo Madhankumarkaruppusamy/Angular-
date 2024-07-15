@@ -2,20 +2,17 @@
   flex: 1 1 auto;
 }
 
-.ful-body {
-
+.table-body {
   padding: 20px;
-  margin: 0 auto;
-  max-width: 1264px;
+  display: flex;
 
   mat-form-field {
-    width: 100%;
+    display: flex;
 
   }
 
-  .table-data {
-
-    max-width: 1248px;
+  .ful-data {
+    max-width: 1264x;
   }
 
   .actionrow {

@@ -14,7 +14,7 @@ import { StudentDeleteComponent } from './student-delete/student-delete.componen
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements AfterViewInit, OnInit {
+export class AppComponent implements  OnInit {
   title = 'Student List';
 
   displayedColumns: string[] = [
@@ -38,12 +38,11 @@ export class AppComponent implements AfterViewInit, OnInit {
 
 
   ngOnInit(): void {
-    this.loadData();
-  }
-  ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.loadData();
   }
+  
 
 
   OpenAddEditForm() {

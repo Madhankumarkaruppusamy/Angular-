@@ -21,7 +21,7 @@ export class StudentDeleteComponent {
   }
 
 
-  OnFormSubmit() {
+  OnSubmit() {
     console.log('Form submit triggered with ID:', this.ID);
     if (this.data) {
       this._appService.deletedata(this.ID).subscribe({
